@@ -121,23 +121,38 @@ class CustomUserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = [
+        fields = (
             "first_name",
             "last_name",
             "email",
-            "phone",
-            "marketing_consent_one",
-            "marketing_consent_two",
-            "address_one",
-            "address_two",
+            "address1",
+            "address2",
             "city",
             "country",
             "province",
             "postal_code",
-        ]
+            "phone",
+        )
         widgets = {
-            "marketing_consent_one": forms.CheckboxInput(attrs={"class": "form-check-input"}),
-            "marketing_consent_two": forms.CheckboxInput(attrs={"class": "form-check-input"}),
+            "email": forms.EmailInput(attrs={"class": "input-register form-control", "placeholder": "Your email"}),
+            "first_name": forms.TextInput(
+                attrs={"class": "input-register form-control", "placeholder": "Your first name"}
+            ),
+            "last_name": forms.TextInput(
+                attrs={"class": "input-register form-control", "placeholder": "Your last name"}
+            ),
+            "address1": forms.TextInput(
+                attrs={"class": "input-register form-control", "placeholder": "Address line 1"}
+            ),
+            "address2": forms.TextInput(
+                attrs={"class": "input-register form-control", "placeholder": "Address line 2"}
+            ),
+            "city": forms.TextInput(attrs={"class": "input-register form-control", "placeholder": "Your city"}),
+            "country": forms.TextInput(attrs={"class": "input-register form-control", "placeholder": "Your country"}),
+            "province": forms.TextInput(attrs={"class": "input-register form-control", "placeholder": "Your province"}),
+            "postal_code": forms.TextInput(
+                attrs={"class": "input-register form-control", "placeholder": "Your postal code"}
+            ),
         }
 
     def clean_email(self):
