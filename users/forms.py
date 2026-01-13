@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model, authenticate
 from django.core.validators import RegexValidator
+from django.utils.html import strip_tags
 
 User = get_user_model()
 
@@ -138,3 +139,29 @@ class CustomUserUpdateForm(forms.ModelForm):
             "marketing_consent_one": forms.CheckboxInput(attrs={"class": "form-check-input"}),
             "marketing_consent_two": forms.CheckboxInput(attrs={"class": "form-check-input"}),
         }
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if email and User.objects.filter(email=email).exclude(id=self.instance.id).exists():
+            raise forms.ValidationError("Email already exists.")
+        return email
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if not cleaned_data.get("email"):
+            cleaned_data["email"] = self.instance.email
+
+            for field in [
+                "first_name",
+                "last_name",
+                "address_one",
+                "address_two",
+                "city",
+                "country",
+                "province",
+                "postal_code",
+            ]:
+                if cleaned_data.get(field):
+                    cleaned_data[field] = strip_tags(cleaned_data[field])
+
+                return cleaned_data
