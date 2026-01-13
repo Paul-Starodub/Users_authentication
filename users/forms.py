@@ -141,10 +141,10 @@ class CustomUserUpdateForm(forms.ModelForm):
             "last_name": forms.TextInput(
                 attrs={"class": "input-register form-control", "placeholder": "Your last name"}
             ),
-            "address1": forms.TextInput(
+            "address_one": forms.TextInput(
                 attrs={"class": "input-register form-control", "placeholder": "Address line 1"}
             ),
-            "address2": forms.TextInput(
+            "address_two": forms.TextInput(
                 attrs={"class": "input-register form-control", "placeholder": "Address line 2"}
             ),
             "city": forms.TextInput(attrs={"class": "input-register form-control", "placeholder": "Your city"}),
