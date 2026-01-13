@@ -42,21 +42,21 @@
             {% endif %}
         </div>
         <div class="checkbox-form">
-            {{ form.marketing_consent1 }}
-            <label for="{{ form.marketing_consent1.id_for_label }}">
+            {{ form.marketing_consent_one }}
+            <label for="{{ form.marketing_consent_one.id_for_label }}">
                 I agree to receive commercial communications.
             </label>
-            {% if form.marketing_consent1.errors %}
-                <div class="error">{{ form.marketing_consent1.errors }}</div>
+            {% if form.marketing_consent_one.errors %}
+                <div class="error">{{ form.marketing_consent_one.errors }}</div>
             {% endif %}
         </div>
         <div class="checkbox-form">
-            {{ form.marketing_consent2 }}
-            <label for="{{ form.marketing_consent2.id_for_label }}">
+            {{ form.marketing_consent_two }}
+            <label for="{{ form.marketing_consent_two.id_for_label }}">
                 I agree to receive personalized communications.
             </label>
-            {% if form.marketing_consent2.errors %}
-                <div class="error">{{ form.marketing_consent2.errors }}</div>
+            {% if form.marketing_consent_two.errors %}
+                <div class="error">{{ form.marketing_consent_two.errors }}</div>
             {% endif %}
         </div>
         <button type="submit">Create</button>
